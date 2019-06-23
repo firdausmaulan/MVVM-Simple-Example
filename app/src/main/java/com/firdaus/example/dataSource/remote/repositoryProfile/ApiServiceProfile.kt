@@ -1,11 +1,8 @@
 package com.firdaus.example.dataSource.remote.repositoryProfile
 
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.firdaus.example.BuildConfig
-import com.firdaus.example.base.BaseApp
 import com.firdaus.example.model.profile.ProfileResponse
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.readystatesoftware.chuck.ChuckInterceptor
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,11 +18,6 @@ interface ApiServiceProfile {
                 .baseUrl(BuildConfig.BASE_URL_PROFILE)
 
             val client = OkHttpClient.Builder()
-
-            if (BuildConfig.DEBUG) {
-                client.addInterceptor(ChuckInterceptor(BaseApp.context))
-                client.addInterceptor(StethoInterceptor())
-            }
 
             return retrofit.client(client.build()).build().create(ApiServiceProfile::class.java)
         }

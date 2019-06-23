@@ -12,8 +12,8 @@ class RepositoryNews {
 
     private val service = ApiServiceNews.create()
 
-    fun requestTopHeadlines(page: Int?, callback: RepositoryCallback<News>) {
-        service.topHeadlines(page)
+    fun requestNews(page: Int?, callback: RepositoryCallback<News>) {
+        service.requestNews(page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSingleObserver<News>() {

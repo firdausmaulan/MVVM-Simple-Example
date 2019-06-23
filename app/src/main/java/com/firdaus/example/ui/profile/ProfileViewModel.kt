@@ -8,10 +8,9 @@ import com.firdaus.example.dataSource.remote.repositoryProfile.RepositoryProfile
 import com.firdaus.example.model.profile.Profile
 import com.firdaus.example.model.profile.ProfileResponse
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel constructor(private val repository: RepositoryProfile) : ViewModel() {
 
     private val _profile = MutableLiveData<Profile>()
-    private val repository = RepositoryProfile()
 
     val profile: LiveData<Profile>
         get() = _profile

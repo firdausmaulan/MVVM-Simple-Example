@@ -3,7 +3,7 @@ package com.firdaus.example.ui.home
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.firdaus.example.R
-import com.firdaus.example.ui.news.NewsListActivity
+import com.firdaus.example.ui.news.NewsActivity
 import com.firdaus.example.ui.profile.ProfileActivity
 import com.firdaus.example.ui.user.UserActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         btnNews.setOnClickListener {
-            startActivity<NewsListActivity>()
+            startActivity<NewsActivity>()
         }
     }
 }
