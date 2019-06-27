@@ -2,7 +2,6 @@ package com.firdaus.example.ui.news
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.firdaus.example.databinding.AdapterNewsBinding
@@ -16,28 +15,22 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     fun update(list: List<Article>) {
         listArticle.addAll(list)
         notifyDataSetChanged()
-        Log.d("NewsAdapter", "list Size = ${list.size}")
-        Log.d("NewsAdapter", "listArticle Size = ${listArticle.size}")
-        Log.d("NewsAdapter", "itemCount = $itemCount")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding = AdapterNewsBinding.inflate(layoutInflater, parent, false)
-        Log.d("NewsAdapter", "onCreateViewHolder")
         return ViewHolder(itemBinding)
     }
 
     inner class ViewHolder(private val binding: AdapterNewsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
-            Log.d("NewsAdapter", "bind")
             binding.article = article
             binding.executePendingBindings()
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("NewsAdapter", "onBindViewHolder")
         val item = listArticle[position]
         holder.bind(item)
     }
@@ -61,7 +54,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        Log.d("NewsAdapter", "onBindViewHolder")
         if (listArticle.size > 0) viewHolder.bind(listArticle[position])
     }*/
 
