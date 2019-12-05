@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="newsViewModel"
-                type="com.firdaus.example.ui.news.NewsViewModel"/>
+            name="newsViewModel"
+            type="com.firdaus.example.ui.news.NewsViewModel" />
+
+        <variable
+            name="newsAdapter"
+            type="com.firdaus.example.ui.news.NewsAdapter" />
     </data>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvNews"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:items="@{newsViewModel.news.articles}"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:newsItems="@{newsViewModel.newsLiveData.articles}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/adapter_news" />
 </layout>

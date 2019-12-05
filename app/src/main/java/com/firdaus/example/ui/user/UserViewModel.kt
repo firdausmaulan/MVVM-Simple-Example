@@ -1,31 +1,30 @@
 package com.firdaus.example.ui.user
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.firdaus.example.R
+import com.firdaus.example.base.BaseViewModel
 import com.firdaus.example.model.user.User
 
-class UserViewModel : ViewModel() {
+class UserViewModel : BaseViewModel() {
 
-    private val _user = MutableLiveData<User>()
+    val userLiveData = MutableLiveData<User>()
 
     /*init {
-        _user.value = User("Maulana", "Firdaus")
+        userLiveData.value = User("Maulana", "Firdaus")
     }*/
-
-    val user: LiveData<User>
-        get() = _user
 
     fun changeUserName(firstName: String?, lastName: String?) {
         val user = User()
         if (firstName.isNullOrEmpty()) {
-            user.requiredFirstName = "required first name"
+            user.firstNameError = R.string.required_first_name
         } else if (lastName.isNullOrEmpty()) {
-            user.requiredLastName = "required last name"
+            user.lastNameError = R.string.required_last_name
         } else {
             user.firstName = firstName
             user.lastName = lastName
         }
-        _user.value = user
+        //userLiveData.postValue(user)
+        userLiveData.value = user
     }
 }

@@ -1,28 +1,29 @@
 package com.firdaus.example.ui.profile
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import com.firdaus.example.base.BaseViewModel
 import com.firdaus.example.dataSource.remote.RepositoryCallback
 import com.firdaus.example.dataSource.remote.repositoryProfile.RepositoryProfile
 import com.firdaus.example.model.profile.Profile
 import com.firdaus.example.model.profile.ProfileResponse
+import com.firdaus.example.utils.LogUtil
 
-class ProfileViewModel constructor(private val repository: RepositoryProfile) : ViewModel() {
+class ProfileViewModel constructor(private val repository: RepositoryProfile) : BaseViewModel() {
 
-    private val _profile = MutableLiveData<Profile>()
-
-    val profile: LiveData<Profile>
-        get() = _profile
+    val profileLiveData = MutableLiveData<Profile>()
 
     fun requestProfile() {
+        showBaseLoading()
         repository.requestProfile(object : RepositoryCallback<ProfileResponse> {
             override fun onDataLoaded(response: ProfileResponse) {
-                _profile.value = response.profile
+                hideBaseLoading()
+                profileLiveData.value = response.profile
             }
 
             override fun onDataError(error: String?) {
-
+                hideBaseLoading()
+                LogUtil.e(error.toString())
+                showMessage(error)
             }
         })
     }

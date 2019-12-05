@@ -1,30 +1,35 @@
 package com.firdaus.example.ui.home
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.firdaus.example.R
+import com.firdaus.example.base.BaseActivity
+import com.firdaus.example.databinding.ActivityHomeBinding
 import com.firdaus.example.ui.news.NewsActivity
 import com.firdaus.example.ui.profile.ProfileActivity
 import com.firdaus.example.ui.user.UserActivity
-import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.startActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity(), EventListener {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        val binding: ActivityHomeBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_home
+        )
+        binding.event = this
+    }
 
-        btnUser.setOnClickListener {
-            startActivity<UserActivity>()
-        }
+    override fun onButtonUserClicked() {
+        startActivity<UserActivity>()
+    }
 
-        btnProfile.setOnClickListener {
-            startActivity<ProfileActivity>()
-        }
+    override fun onButtonProfileClicked() {
+        startActivity<ProfileActivity>()
+    }
 
-        btnNews.setOnClickListener {
-            startActivity<NewsActivity>()
-        }
+    override fun onButtonNewsClicked() {
+        startActivity<NewsActivity>()
     }
 }

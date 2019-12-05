@@ -10,7 +10,7 @@
             type="com.firdaus.example.model.news.Article" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_2sdp"
@@ -78,5 +78,5 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             tools:text="@string/app_name" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.firdaus.example.ui.news
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.firdaus.example.base.BaseEventListener
 import com.firdaus.example.dataSource.remote.RepositoryCallback
 import com.firdaus.example.dataSource.remote.repositoryNews.RepositoryNews
 import com.firdaus.example.model.news.News
@@ -25,10 +26,14 @@ class NewsViewModelTest {
     @Mock
     private lateinit var viewModel: NewsViewModel
 
+    @Mock
+    private lateinit var baseEventListener: BaseEventListener
+
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
         viewModel = NewsViewModel(repository)
+        viewModel.setBaseEventListener(baseEventListener)
     }
 
     @Test

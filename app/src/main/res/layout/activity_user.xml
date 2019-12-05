@@ -10,11 +10,11 @@
             type="com.firdaus.example.ui.user.UserViewModel" />
 
         <variable
-            name="userClickHandlers"
-            type="com.firdaus.example.ui.user.UserActivity.ClickHandlers" />
+            name="event"
+            type="com.firdaus.example.ui.user.EventListener" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,8 +26,8 @@
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:hint="First Name"
-            app:error="@{userViewModel.user.requiredFirstName}"
+            android:hint="@string/first_name"
+            app:setError="@{userViewModel.userLiveData.firstNameError}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,14 +41,14 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:hint="Last Name"
-            app:error="@{userViewModel.user.requiredLastName}"
+            android:hint="@string/last_name"
+            app:setError="@{userViewModel.userLiveData.lastNameError}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSubmit"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -57,8 +57,8 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:onClick="@{userClickHandlers::changeUserName}"
-            android:text="Submit"
+            android:onClick="@{()-> event.onButtonSubmitClicked()}"
+            android:text="@string/submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etLastName" />
@@ -72,10 +72,10 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:text="@{userViewModel.user.firstName}"
+            android:text="@{userViewModel.userLiveData.firstName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/btnSubmit"
             tools:text="@string/app_name" />
 
         <TextView
@@ -86,10 +86,10 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:text="@{userViewModel.user.lastName}"
+            android:text="@{userViewModel.userLiveData.lastName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:text="@string/app_name" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

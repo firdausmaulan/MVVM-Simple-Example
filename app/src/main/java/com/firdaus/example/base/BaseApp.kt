@@ -1,7 +1,7 @@
 package com.firdaus.example.base
 
 import android.content.Context
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 
 class BaseApp : MultiDexApplication() {
 

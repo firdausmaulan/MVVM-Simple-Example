@@ -1,12 +1,14 @@
 package com.firdaus.example.ui.profile
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import com.firdaus.example.R
+import com.firdaus.example.base.BaseActivity
 import com.firdaus.example.dataSource.remote.repositoryProfile.RepositoryProfile
 import com.firdaus.example.databinding.ActivityProfileBinding
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity() {
 
     private lateinit var profileViewModel: ProfileViewModel
 
@@ -16,11 +18,12 @@ class ProfileActivity : AppCompatActivity() {
         profileViewModel = ViewModelProviders
             .of(this, ProfileFactory(RepositoryProfile()))
             .get(ProfileViewModel::class.java)
-        val binding = ActivityProfileBinding.inflate(layoutInflater)
+        profileViewModel.setBaseEventListener(this)
+        val binding: ActivityProfileBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_profile
+        )
         binding.profileViewModel = profileViewModel
-        binding.setLifecycleOwner(this)
-        setContentView(binding.root)
-
+        binding.lifecycleOwner = this
         profileViewModel.requestProfile()
     }
 }

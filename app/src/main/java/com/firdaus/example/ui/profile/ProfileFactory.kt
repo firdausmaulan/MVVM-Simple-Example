@@ -1,7 +1,7 @@
 package com.firdaus.example.ui.profile
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.firdaus.example.dataSource.remote.repositoryProfile.RepositoryProfile
 
 class ProfileFactory(private val repository: RepositoryProfile) : ViewModelProvider.NewInstanceFactory() {

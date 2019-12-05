@@ -1,6 +1,7 @@
 package com.firdaus.example.ui.profile
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.firdaus.example.base.BaseEventListener
 import com.firdaus.example.dataSource.remote.RepositoryCallback
 import com.firdaus.example.dataSource.remote.repositoryProfile.RepositoryProfile
 import com.firdaus.example.model.profile.ProfileResponse
@@ -26,10 +27,14 @@ class ProfileViewModelTest {
     @Mock
     private lateinit var viewModel: ProfileViewModel
 
+    @Mock
+    private lateinit var baseEventListener: BaseEventListener
+
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
         viewModel = ProfileViewModel(repository)
+        viewModel.setBaseEventListener(baseEventListener)
     }
 
     @Test
